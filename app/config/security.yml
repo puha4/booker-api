@@ -24,3 +24,6 @@ security:
             fos_oauth: true
             stateless: true
             anonymous: false
+
+    access_control:
+        - { path: ^/, roles: [ IS_AUTHENTICATED_FULLY ] }
