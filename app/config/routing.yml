@@ -11,3 +11,7 @@ fos_oauth_server_authorize:
 employee:
     type: rest
     resource: AppBundle\Controller\EmployeeController
+
+boardroom:
+    type: rest
+    resource: AppBundle\Controller\BoardroomController
