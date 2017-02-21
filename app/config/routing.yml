@@ -18,4 +18,4 @@ boardroom:
 
 appointment:
     type: rest
-    resource: AppBundle\Controller\Appointment
+    resource: AppBundle\Controller\AppointmentController
