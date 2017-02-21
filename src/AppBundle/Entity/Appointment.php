@@ -43,20 +43,21 @@ class Appointment
 
     /**
      * @var \DateTime
-     * @SerializedName("bookedDateFrom")
+     * @SerializedName("start")
      * @ORM\Column(name="booked_date_from", type="datetime")
      */
     private $bookedDateFrom;
 
     /**
      * @var \DateTime
-     * @SerializedName("bookedDateTo")
+     * @SerializedName("end")
      * @ORM\Column(name="booked_date_to", type="datetime")
      */
     private $bookedDateTo;
 
     /**
      * @ORM\Column(name="specifics", type="string")
+     * @SerializedName("title")
      */
     private $specifics;
 
