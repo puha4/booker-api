@@ -9,12 +9,23 @@ use Symfony\Component\HttpFoundation\Response;
 
 class EmployeeController extends FOSRestController
 {
-    public function getEmployeeAction()
+    public function getEmployeeAction(Employee $employee)
     {
-        $employee = new Employee();
-        $employee->setFirstName("FirstName");
+        if (!$employee) {
+            // throw
+        }
 
-        $view = $this->view($employee, Response::HTTP_OK);
+        $view = $this->view(['employee' => $employee], Response::HTTP_OK);
+
+        return $this->handleView($view);
+    }
+
+    public function getEmployeesAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $employees = $em->getRepository("AppBundle:Employee")->findAll();
+
+        $view = $this->view(['employees' => $employees], Response::HTTP_OK);
 
         return $this->handleView($view);
     }

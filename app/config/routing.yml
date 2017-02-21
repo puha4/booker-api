@@ -15,3 +15,7 @@ employee:
 boardroom:
     type: rest
     resource: AppBundle\Controller\BoardroomController
+
+appointment:
+    type: rest
+    resource: AppBundle\Controller\Appointment
