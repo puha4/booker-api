@@ -90,6 +90,7 @@ fos_oauth_server:
             supported_scopes: user
 
 fos_rest:
+    param_fetcher_listener: true
     routing_loader:
         default_format: json
         include_format: false
