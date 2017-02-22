@@ -29,18 +29,15 @@ class AppointmentType extends AbstractType
             ->add('specifics', TextType::class)
             ->add('bookedDate', DateTimeType::class, [
                 'widget' => 'single_text',
-                'format' => 'Y-m-d H:m',
-                'model_timezone' => 'Europe/Kiev'
+                'format' => 'Y-m-d H:m'
             ])
             ->add('bookedDateFrom', DateTimeType::class,[
                 'widget' => 'single_text',
-                'format' => 'Y-m-d H:m',
-                'model_timezone' => 'Europe/Kiev'
+                'format' => 'Y-m-d H:m'
             ])
             ->add('bookedDateTo', DateTimeType::class, [
                 'widget' => 'single_text',
-                'format' => 'Y-m-d H:m',
-                'model_timezone' => 'Europe/Kiev'
+                'format' => 'Y-m-d H:m'
             ])
             ->add('recuming')
             ->add('recumingType')

@@ -38,8 +38,7 @@ class AppointmentController extends FOSRestController
         $form = $this->createForm('AppBundle\Form\AppointmentType', $appointment);
 
         $form->handleRequest($request);
-print_r($appointment);
-        $this->get('logger')->info($appointment);
+
         if ($form->isValid()) {
 
             $em = $this->getDoctrine()->getManager();

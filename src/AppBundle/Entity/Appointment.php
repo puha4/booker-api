@@ -2,7 +2,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\VirtualProperty;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -23,6 +25,7 @@ class Appointment
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Employee")
      * @ORM\JoinColumn(name="employee_id", referencedColumnName="id")
+     * @SerializedName("employeeObject")
      */
     private $employee;
 
@@ -31,6 +34,7 @@ class Appointment
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Boardroom")
      * @ORM\JoinColumn(name="boardroom_id", referencedColumnName="id")
+     * @SerializedName("boardroomObject")
      */
     private $boardroom;
 
@@ -43,14 +47,14 @@ class Appointment
 
     /**
      * @var \DateTime
-     * @SerializedName("start")
+     * @SerializedName("bookedDateFrom")
      * @ORM\Column(name="booked_date_from", type="datetime")
      */
     private $bookedDateFrom;
 
     /**
      * @var \DateTime
-     * @SerializedName("end")
+     * @SerializedName("bookedDateTo")
      * @ORM\Column(name="booked_date_to", type="datetime")
      */
     private $bookedDateTo;
@@ -304,5 +308,23 @@ class Appointment
     public function getBoardroom()
     {
         return $this->boardroom;
+    }
+
+    /**
+     * @VirtualProperty()
+     * @SerializedName("employee")
+     */
+    public function getEmployeeId()
+    {
+        return $this->employee->getId();
+    }
+
+    /**
+     * @VirtualProperty()
+     * @SerializedName("boardroom")
+     */
+    public function getBoardroomId()
+    {
+        return $this->boardroom->getId();
     }
 }
