@@ -69,9 +69,6 @@ class Appointment
 
     /**
      * @ORM\Column(name="recuming_type", type="integer")
-     * @Assert\Choice(choices="{
-     *     1,2,3
-     * }")
      * @SerializedName("recumingType")
      */
     private $recumingType;
