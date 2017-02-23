@@ -61,7 +61,8 @@ class Appointment
 
     /**
      * @ORM\Column(name="specifics", type="string")
-     * @SerializedName("title")
+     * @SerializedName("specifics")
+     * @Assert\NotBlank()
      */
     private $specifics;
 

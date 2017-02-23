@@ -11,6 +11,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AppointmentController extends FOSRestController
 {
+    public function getAppointmentAction(Appointment $appointment)
+    {
+        $view = $this->view(['appointment' => $appointment], Response::HTTP_OK);
+
+        return $this->handleView($view);
+    }
+
     /**
      * @QueryParam(name="boardroom",  nullable=true, description="Boardroom Id.")
      */

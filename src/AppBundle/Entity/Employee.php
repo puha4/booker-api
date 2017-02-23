@@ -3,9 +3,12 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\SerializedName;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity
+ * @UniqueEntity("email")
  */
 class Employee
 {
@@ -19,11 +22,13 @@ class Employee
     /**
      * @ORM\Column(name="firstname", type="string", length=255)
      * @SerializedName("firstName")
+     * @Assert\NotBlank()
+     * @Assert\Length(min=2)
      */
     private $firstName;
 
     /**
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, unique=true)
      * @Assert\Email(
      *     message = "The email '{{ value }}' is not a valid email.",
      *     checkMX = true
