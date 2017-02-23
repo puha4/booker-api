@@ -18,7 +18,7 @@ class Employee
 
     /**
      * @ORM\Column(name="firstname", type="string", length=255)
-     * @SerializedName("firstname")
+     * @SerializedName("firstName")
      */
     private $firstName;
 
