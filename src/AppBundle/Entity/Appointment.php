@@ -76,6 +76,7 @@ class Appointment
     /**
      * @ORM\Column(name="recuming_type", type="integer")
      * @SerializedName("recumingType")
+     * @Assert\NotBlank()
      */
     private $recumingType;
 
