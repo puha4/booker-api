@@ -90,7 +90,7 @@ fos_oauth_server:
             supported_scopes: user
 
 fos_rest:
-    disable_csrf_role: IS_AUTHENTICATED_FULLY
+    disable_csrf_role: IS_AUTHENTICATED_ANONYMOUSLY
     param_fetcher_listener: true
     routing_loader:
         default_format: json

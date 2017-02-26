@@ -2,30 +2,19 @@
 
 namespace Tests\AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Tests\AppBundle\TestCase;
 
-class BoardroomControllerTest extends WebTestCase
+class BoardroomControllerTest extends TestCase
 {
-    public function testGetBoardroomsNotAuthentificated()
+    public function testGetBoardrooms()
     {
-        $client = static::createClient();
+        $client = self::$client;
 
         $crawler  = $client->request('GET', '/boardrooms');
 
         $response = $client->getResponse();
 
-        $this->assertJsonResponse($response, 401);
+        $this->assertJsonResponse($response, 200);
     }
 
-    protected function assertJsonResponse($response, $statusCode = 200)
-    {
-        $this->assertEquals(
-            $statusCode, $response->getStatusCode(),
-            $response->getContent()
-        );
-        $this->assertTrue(
-            $response->headers->contains('Content-Type', 'application/json'),
-            $response->headers
-        );
-    }
 }

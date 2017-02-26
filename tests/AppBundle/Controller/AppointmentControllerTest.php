@@ -2,31 +2,40 @@
 
 namespace Tests\AppBundle\Controller;
 
+use Tests\AppBundle\TestCase;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
-class AppointmentControllerTest extends WebTestCase
+class AppointmentControllerTest extends TestCase
 {
-    public function testGetAppointmentsNotAuthentificated()
+    public function testGetAppointments()
     {
-        $client = static::createClient();
+        $client = self::$client;
 
         $crawler  = $client->request('GET', '/appointments');
 
         $response = $client->getResponse();
 
-        $this->assertJsonResponse($response, 401);
+        $this->assertJsonResponse($response, 200);
     }
 
-    protected function assertJsonResponse($response, $statusCode = 200)
+    public function testGetExistAppointment()
     {
-        $this->assertEquals(
-            $statusCode, $response->getStatusCode(),
-            $response->getContent()
-        );
-        $this->assertTrue(
-            $response->headers->contains('Content-Type', 'application/json'),
-            $response->headers
-        );
+        $client = self::$client;
+
+        $crawler  = $client->request('GET', '/appointments/1');
+
+        $response = $client->getResponse();
+
+        $this->assertJsonResponse($response, 200);
+    }
+
+    public function testGetNotExistAppointment()
+    {
+        $client = self::$client;
+
+        $crawler  = $client->request('GET', '/appointments/10');
+
+        $response = $client->getResponse();
+
+        $this->assertJsonResponse($response, 404);
     }
 }

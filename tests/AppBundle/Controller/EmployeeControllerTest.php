@@ -2,31 +2,40 @@
 
 namespace Tests\AppBundle\Controller;
 
+use Tests\AppBundle\TestCase;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
-class EmployeeControllerTest extends WebTestCase
+class EmployeeControllerTest extends TestCase
 {
-    public function testGetEmployeesNotAuthentificated()
+    public function testGetEmployees()
     {
-        $client = static::createClient();
+        $client = self::$client;
 
         $crawler  = $client->request('GET', '/employees');
 
         $response = $client->getResponse();
 
-        $this->assertJsonResponse($response, 401);
+        $this->assertJsonResponse($response, 200);
     }
 
-    protected function assertJsonResponse($response, $statusCode = 200)
+    public function testGetExistEmployee()
     {
-        $this->assertEquals(
-            $statusCode, $response->getStatusCode(),
-            $response->getContent()
-        );
-        $this->assertTrue(
-            $response->headers->contains('Content-Type', 'application/json'),
-            $response->headers
-        );
+        $client = self::$client;
+
+        $crawler  = $client->request('GET', '/employees/1');
+
+        $response = $client->getResponse();
+
+        $this->assertJsonResponse($response, 200);
+    }
+
+    public function testGetNotExistEmployee()
+    {
+        $client = self::$client;
+
+        $crawler  = $client->request('GET', '/employees/10');
+
+        $response = $client->getResponse();
+
+        $this->assertJsonResponse($response, 404);
     }
 }
